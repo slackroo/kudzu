@@ -12,10 +12,58 @@ Subpackages
 Submodules
 ----------
 
+kudzu.callbacks module
+----------------------
+
+.. automodule:: kudzu.callbacks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+kudzu.data module
+-----------------
+
+.. automodule:: kudzu.data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 kudzu.example module
 --------------------
 
 .. automodule:: kudzu.example
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+kudzu.function module
+---------------------
+
+.. automodule:: kudzu.function
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+kudzu.loss module
+-----------------
+
+.. automodule:: kudzu.loss
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+kudzu.optim module
+------------------
+
+.. automodule:: kudzu.optim
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+kudzu.train module
+------------------
+
+.. automodule:: kudzu.train
    :members:
    :undoc-members:
    :show-inheritance:
