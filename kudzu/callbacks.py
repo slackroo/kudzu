@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-class Callback():
+class Callback:
     def __init__(self, learner):
         self.learner = learner
 
@@ -25,7 +25,7 @@ class Callback():
 
     def epoch_end(self):
         return True
-    
+
 
 class AccCallback(Callback):
     def __init__(self, learner):
@@ -47,7 +47,7 @@ class AccCallback(Callback):
     def after_loss(self, loss):
         self.loss = loss
         return True
-        
+
     def epoch_end(self):
         print(f"Epoch {self.epoch}:\nLoss {self.loss}")
         for name, fnval, grval in self.learner.func.params_and_grads():

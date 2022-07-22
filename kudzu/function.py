@@ -2,7 +2,6 @@ import numpy as np
 
 
 class Function:
-
     def __init__(self):
         self.params = {}
         self.grads = {}
@@ -24,13 +23,13 @@ class Function:
 class ZeroBiasAffine(Function):
     def __init__(self):
         super().__init__()
-        self.params['w'] = np.random.randn()
-        self.grads['w'] = 0.
+        self.params["w"] = np.random.randn()
+        self.grads["w"] = 0.0
 
     def __call__(self, inputs):
         self.inputs = inputs
-        return inputs*self.params['w']
+        return inputs * self.params["w"]
 
     def backward(self, grad):
-        self.grads['w'] = grad @ self.inputs
-        return self.params['w']*grad
+        self.grads["w"] = grad @ self.inputs
+        return self.params["w"] * grad
