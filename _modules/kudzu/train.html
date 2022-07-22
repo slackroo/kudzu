@@ -99,29 +99,28 @@
              
   <h1>Source code for kudzu.train</h1><div class="highlight"><pre>
 <div class="viewcode-block" id="Learner"><a class="viewcode-back" href="../../kudzu.html#kudzu.train.Learner">[docs]</a><span></span><span class="k">class</span> <span class="nc">Learner</span><span class="p">:</span>
-    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">epochs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">opt</span> <span class="o">=</span> <span class="n">opt</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cbs</span> <span class="o">=</span> <span class="p">[]</span>
-        
+
 <div class="viewcode-block" id="Learner.set_callbacks"><a class="viewcode-back" href="../../kudzu.html#kudzu.train.Learner.set_callbacks">[docs]</a>    <span class="k">def</span> <span class="nf">set_callbacks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cblist</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">cb</span> <span class="ow">in</span> <span class="n">cblist</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cbs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span></div>
-            
+
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cbname</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">status</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">for</span> <span class="n">cb</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cbs</span><span class="p">:</span>
             <span class="n">cbwanted</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">cbname</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
             <span class="n">status</span> <span class="o">=</span> <span class="n">status</span> <span class="ow">and</span> <span class="n">cbwanted</span> <span class="ow">and</span> <span class="n">cbwanted</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">status</span>
-    
+
 <div class="viewcode-block" id="Learner.train_loop"><a class="viewcode-back" href="../../kudzu.html#kudzu.train.Learner.train_loop">[docs]</a>    <span class="k">def</span> <span class="nf">train_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">(</span><span class="s1">&#39;fit_start&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">(</span><span class="s2">&quot;fit_start&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epochs</span><span class="p">):</span>
-            <span class="bp">self</span><span class="p">(</span><span class="s1">&#39;epoch_start&#39;</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">(</span><span class="s2">&quot;epoch_start&quot;</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
             <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:]</span>
 
             <span class="c1"># make predictions</span>
@@ -129,7 +128,7 @@
 
             <span class="c1"># actual loss value</span>
             <span class="n">epochloss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">predicted</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
-            <span class="bp">self</span><span class="p">(</span><span class="s1">&#39;after_loss&#39;</span><span class="p">,</span> <span class="n">epochloss</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">(</span><span class="s2">&quot;after_loss&quot;</span><span class="p">,</span> <span class="n">epochloss</span><span class="p">)</span>
 
             <span class="c1"># calculate gradient</span>
             <span class="n">intermed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">predicted</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
@@ -138,8 +137,8 @@
             <span class="c1"># update parameter with gradient</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="p">(</span><span class="s1">&#39;epoch_end&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="p">(</span><span class="s1">&#39;fit_end&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">(</span><span class="s2">&quot;epoch_end&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">(</span><span class="s2">&quot;fit_end&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">epochloss</span></div></div>
 </pre></div>
 
